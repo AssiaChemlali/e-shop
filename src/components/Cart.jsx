@@ -13,7 +13,7 @@ const Cart = () => {
   }
 
   useEffect(()=>{
-    const totalcart=cart.reduce((acc,curr)=>acc + curr.price,0)
+    const totalcart=cart.reduce((acc,curr)=>acc + curr.price * curr.quantity,0)
     setTotalPrice(totalcart)
   },[cart])
 
@@ -33,6 +33,7 @@ const Cart = () => {
               <img src={item.image} alt="" className='w-[100px] bg-white p-2 rounded mb-2'/>
 
               <p className='mb-3 text-white'>Qantity: {item.quantity}</p>
+              <p className='mb-3 text-white'>price: {item.price}</p>
 
               <button 
               onClick={()=>handleRemoveFromCart(item.id)}
