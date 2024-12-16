@@ -4,18 +4,14 @@ export const fetchProducts=createAsyncThunk('cart/fetchProducts',async()=>{
  const url="https://fakestoreapi.com/products?limit=6"
  const response=await fetch(url)
  const data=await response.json()
-//  console.log("data",data)
  return data
 })
-
-
 
 
 const initialState={
   products:[],
   cart:[],
   loading:false,
-  // error:null
 }
 
 const cartSlice=createSlice({
@@ -36,7 +32,7 @@ const cartSlice=createSlice({
     removeFromCart(state,action){
       const id=action.payload
       console.log(id)
-
+      state.cart= state.cart.filter((item)=>item.id!==id  )
     }
 
   },

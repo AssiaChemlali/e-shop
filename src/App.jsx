@@ -8,8 +8,7 @@ function App() {
 
 
   return (
-   
-      <div className='bg-black p-10 w-full font-sans'>
+      <div className='bg-black p-10 w-full h-screen font-sans'>
         <Navbar/>
         <Routes>
           <Route path="/" element={<Products/> }/>

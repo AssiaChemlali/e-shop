@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { removeFromCart } from '../store/productSlice'
 
@@ -6,15 +6,24 @@ const Cart = () => {
   const cart=useSelector(state=>state.cart.cart)
   const dispatch=useDispatch()
 
-  function handleRemoveFromCart(id){
+  const [totalPrice,setTotalPrice]=useState(0)
 
+  function handleRemoveFromCart(id){
     dispatch(removeFromCart(id))
   }
+
+  useEffect(()=>{
+    const totalcart=cart.reduce((acc,curr)=>acc + curr.price,0)
+    setTotalPrice(totalcart)
+  },[cart])
+
+
+  
   return (
     <div className='text-white mt-10'>
       <h2 className='text-white font-bold text-2xl'>Cart</h2>
-      <p className='text-xl my-2'>total Items:{cart.length}</p>
-      <p className='text-xl'>Total Amount:</p>
+      <p className='text-xl my-2'>total Items:{cart?.length}</p>
+      <p className='text-xl'>Total Amount:{totalPrice} $</p>
 
       <div className='mt-10'>
         {cart.map((item)=>{

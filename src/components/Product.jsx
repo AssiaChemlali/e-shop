@@ -10,6 +10,7 @@ const Product = ({product}) => {
     const cartItem={
       id:product.id,
       image:product.image,
+      price:product.price,
       quantity:1
     }
     dispatch(addToCart(cartItem))
