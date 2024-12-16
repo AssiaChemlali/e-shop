@@ -9,12 +9,10 @@ function App() {
 
   return (
    
-      <div className='bg-black p-10 container h-screen font-sans'>
+      <div className='bg-black p-10 w-full font-sans'>
         <Navbar/>
-        <Products/> 
-        
         <Routes>
-          <Route path="." element={<App/>}/>
+          <Route path="/" element={<Products/> }/>
           <Route path="/cart" element={<Cart/>}/>
         </Routes>
       

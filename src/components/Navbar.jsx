@@ -1,7 +1,10 @@
 import React from 'react'
 import { FaShoppingCart } from "react-icons/fa";
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router';
 const Navbar = () => {
+
+  const cart=useSelector(state=>state.cart.cart)
   return (
     <nav className='flex items-center '>
         <h2 className='text-white text-2xl font-bold'>
@@ -9,7 +12,7 @@ const Navbar = () => {
         </h2>
         <Link to="/cart" className='ml-auto flex items-center gap-2'>
           <span className='text-white'><FaShoppingCart /></span>
-          <span className='text-white text-base '>Cart(0)</span>
+          <span className='text-white text-base '>Cart({cart.length})</span>
         </Link>
     </nav>
   )

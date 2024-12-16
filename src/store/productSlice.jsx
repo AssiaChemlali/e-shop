@@ -1,19 +1,63 @@
-import { createSlice } from "@reduxjs/toolkit";
+import {  createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+
+export const fetchProducts=createAsyncThunk('cart/fetchProducts',async()=>{
+ const url="https://fakestoreapi.com/products?limit=6"
+ const response=await fetch(url)
+ const data=await response.json()
+//  console.log("data",data)
+ return data
+})
 
 
-const initialState=[]
-const productSlice=createSlice({
-  name:'products',
+
+
+const initialState={
+  products:[],
+  cart:[],
+  loading:false,
+  // error:null
+}
+
+const cartSlice=createSlice({
+  name:'cart',
   initialState,
   reducers:{
-  addToCart(state,action){
+
+    addToCart(state,action){
+      const id=action.payload.id
+      const index =state.cart.findIndex((item)=>item.id===id)
+      if(index===-1){
+        state.cart.push(action.payload)
+      }else{
+        state.cart[index].quantity+=1
+      }
+
+    },
+    removeFromCart(state,action){
+      const id=action.payload
+      console.log(id)
+
+    }
 
   },
-  removeFromCart(state,action){
 
-  }
+  extraReducers:(builder)=>{
+    builder.addCase(fetchProducts.pending,(state)=>{
+       state.loading=true;
+      //  state.error=null
+    })
+    builder.addCase(fetchProducts.fulfilled,(state,action)=>{
+      state.products=action.payload
+      state.loading=false
+    })
+
+    builder.addCase(fetchProducts.rejected,(state)=>{
+      state.loading=false
+      // state.error=error.message
+    })
   }
 })
 
-const {addToCart}=productSlice.actions
-export default productSlice.reducer
+export const {addToCart,removeFromCart}=cartSlice.actions
+const  cartReducer=cartSlice.reducer
+export default cartReducer
