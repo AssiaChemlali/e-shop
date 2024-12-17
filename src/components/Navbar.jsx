@@ -4,15 +4,13 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router';
 const Navbar = () => {
 
-  const cart=useSelector(state=>state.cart.cart)
+  const totalQantity=useSelector(state=>state.cart.totalQantity)
   return (
-    <nav className='flex items-center '>
-        <h2 className='text-white text-2xl font-bold'>
-          <Link to=".">e-shop</Link>
-        </h2>
-        <Link to="/cart" className='ml-auto flex items-center gap-2'>
+    <nav className='flex items-center borde-b justify-between'>
+        <Link to="/" className='text-white text-2xl font-bold'>e-shop</Link>
+        <Link to="/cart" className='flex items-center gap-2'>
           <span className='text-white'><FaShoppingCart /></span>
-          <span className='text-white text-base '>Cart({cart.length})</span>
+          <span className='text-white text-base '>Cart({totalQantity})</span>
         </Link>
     </nav>
   )

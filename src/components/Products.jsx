@@ -4,8 +4,9 @@ import { fetchProducts } from '../store/productSlice'
 import Product from './Product'
 
 const Products = () => {
-  const products=useSelector(state=>state.cart.products)
-  const loading=useSelector(state=>state.cart.loading)
+  const products=useSelector(state=>state.product.products)
+  const loading=useSelector(state=>state.product.loading)
+  const error=useSelector(state=>state.product.error)
   const dispatch=useDispatch()
 
   useEffect(()=>{
@@ -16,7 +17,8 @@ const Products = () => {
 
   return (
     <div className='mt-10'>
-      {loading && <p className='text-white mb-2'>Loading data ...</p>}
+      {error && <p className='text-white mb-2'>{error}</p>}
+      {loading && <p className='text-white mb-2 '>Loading data ...</p>}
       <div className='grid sm:grid-cols-3 gap-3'>
         {
           products.map((product)=>{

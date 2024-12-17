@@ -1,5 +1,5 @@
 
-import { Route, Routes } from 'react-router'
+import { BrowserRouter, Route, Routes } from 'react-router'
 import './App.css'
 import Navbar from './components/Navbar'
 import Products from './components/Products'
@@ -8,7 +8,8 @@ function App() {
 
 
   return (
-      <div className='bg-black p-10 w-full h-screen font-sans'>
+    <BrowserRouter>
+      <div className='bg-black p-10 w-full h-full font-sans'>
         <Navbar/>
         <Routes>
           <Route path="/" element={<Products/> }/>
@@ -16,7 +17,7 @@ function App() {
         </Routes>
       
       </div>
-    
+    </BrowserRouter>
   )
 }
 

@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 
 import { useDispatch } from 'react-redux'
-import { addToCart } from '../store/productSlice'
+import { addToCart } from '../store/cartSlice'
 
 const Product = ({product}) => {
   const dispatch=useDispatch()
